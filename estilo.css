@@ -83,13 +83,22 @@ header.top{ display:flex; align-items:center; justify-content:space-between; gap
 h1{ font-size:clamp(36px,6vw,64px); line-height:1.05; letter-spacing:-.02em; margin:18px 0 0; font-weight:700; }
 h1 em{ font-style:normal; color:var(--cian); }
 .sub{ font-size:clamp(17px,2.2vw,19px); color:var(--ink-dim); max-width:520px; margin:20px 0 0; }
-.escena{ display:flex; justify-content:center; position:relative; }
-.escena::before{
-  content:""; position:absolute; width:90%; aspect-ratio:1; top:50%; left:50%; transform:translate(-50%,-50%); border-radius:50%;
-  background:radial-gradient(closest-side, var(--glow), transparent);
-}
-.sello{ position:relative; width:min(240px,50vw); height:auto; animation:flota 7s ease-in-out infinite; }
-@keyframes flota{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(-10px);} }
+/* El trazado de Numik: retícula, caminos descartados y una línea que va de la idea a lo real */
+.escena{ position:relative; margin:0; }
+.trazado{ width:100%; height:auto; display:block; overflow:visible; }
+.reticula line{ stroke:var(--line); stroke-width:1; }
+.descarte{ fill:none; stroke:var(--ink-dim); stroke-width:1.2; stroke-dasharray:3 5; opacity:.6; }
+.camino{ fill:none; stroke:var(--cian); stroke-width:2.5; stroke-linejoin:round; stroke-linecap:round; }
+.nodo circle{ fill:var(--bg); stroke:var(--ink); stroke-width:1.5; }
+.nodo.real rect{ fill:var(--ink); }
+.nodo text, .eti{ font:500 14px 'Plus Jakarta Sans',system-ui,sans-serif; fill:var(--ink-dim); }
+.nodo .num{ fill:var(--cian); font-weight:700; }
+.nodo{ transition:transform .5s cubic-bezier(.2,.7,.2,1); }
+.js .camino{ stroke-dasharray:var(--largo); stroke-dashoffset:var(--largo); animation:traza 2.2s .3s cubic-bezier(.6,0,.2,1) forwards; }
+.js .nodo{ opacity:0; animation:aparece .4s forwards; }
+@keyframes traza{ to{ stroke-dashoffset:0; } }
+@keyframes aparece{ to{ opacity:1; } }
+.lectura{ position:absolute; left:0; bottom:-6px; font-size:12px; font-weight:600; letter-spacing:.04em; color:var(--ink-dim); font-variant-numeric:tabular-nums; }
 
 /* Secciones */
 section{ padding:70px 0 0; }
@@ -139,8 +148,7 @@ footer a:hover{ color:var(--ink); text-decoration:underline; }
   .hero{ grid-template-columns:1fr; text-align:center; padding-top:16px; }
   .hero .sub{ margin-left:auto; margin-right:auto; }
   .hero .botones{ justify-content:center; }
-  .escena{ order:-1; }
-  .sello{ width:150px; }
+  .escena{ order:-1; max-width:420px; margin:0 auto 8px; width:100%; }
   .juego{ grid-template-columns:1fr; justify-items:center; text-align:center; padding:28px 20px; }
   .juego .botones, .pildoras{ justify-content:center; }
   .rejilla{ grid-template-columns:1fr; }
@@ -151,5 +159,7 @@ footer a:hover{ color:var(--ink); text-decoration:underline; }
 }
 @media (prefers-reduced-motion:reduce){
   html{ scroll-behavior:auto; }
-  .sello{ animation:none; }
+  .js .camino{ animation:none; stroke-dashoffset:0; }
+  .js .nodo{ animation:none; opacity:1; }
+  .nodo{ transition:none; }
 }

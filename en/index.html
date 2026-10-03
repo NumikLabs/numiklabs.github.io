@@ -61,10 +61,23 @@
           <a class="btn btn-secundario" href="#contacto">Contact</a>
         </div>
       </div>
-      <div class="escena" aria-hidden="true">
-        <img class="sello tema-oscuro" src="../img/numik-labs-mark-dark.svg" alt="" width="295" height="334">
-        <img class="sello tema-claro" src="../img/numik-labs-mark-light.svg" alt="" width="295" height="334">
-      </div>
+      <figure class="escena" aria-hidden="true">
+        <svg class="trazado" id="trazado" viewBox="0 0 480 440">
+          <g class="reticula" id="reticula"></g>
+          <path class="descarte" d="M150 330 L230 380 L300 380"/>
+          <path class="descarte" d="M150 230 L110 150 L150 90"/>
+          <path class="descarte" d="M270 170 L350 230"/>
+          <text class="eti" x="306" y="384">×</text><text class="eti" x="146" y="86">×</text><text class="eti" x="352" y="240">×</text>
+          <path class="camino" id="camino" d="M70 390 L150 330 L150 230 L270 170 L310 110 L410 70"/>
+          <g class="nodo" style="animation-delay:.3s"><circle cx="70" cy="390" r="6"/><text x="86" y="394"><tspan class="num">01</tspan> idea</text></g>
+          <g class="nodo" style="animation-delay:.75s"><circle cx="150" cy="330" r="6"/><text x="166" y="334"><tspan class="num">02</tspan> sketch</text></g>
+          <g class="nodo" style="animation-delay:1.1s"><circle cx="150" cy="230" r="6"/><text x="166" y="234"><tspan class="num">03</tspan> test</text></g>
+          <g class="nodo" style="animation-delay:1.55s"><circle cx="270" cy="170" r="6"/><text x="286" y="174"><tspan class="num">04</tspan> detail</text></g>
+          <g class="nodo" style="animation-delay:1.85s"><circle cx="310" cy="110" r="6"/><text x="326" y="114"><tspan class="num">05</tspan> another pass</text></g>
+          <g class="nodo real" style="animation-delay:2.3s"><rect x="402" y="62" width="16" height="16"/><text x="368" y="48"><tspan class="num">06</tspan> real</text></g>
+        </svg>
+        <span class="lectura" id="lectura">x 00 · y 00</span>
+      </figure>
     </div>
 
     <section id="juegos">
@@ -94,7 +107,7 @@
       <h2>How we do things</h2>
       <div class="rejilla">
         <div class="valor"><svg aria-hidden="true"><use href="#i-pieza"/></svg><h3>Few rules, lots of wit</h3><p>We like ideas that are simple, well thought out and easy to understand.</p></div>
-        <div class="valor"><svg aria-hidden="true"><use href="#i-ban"/></svg><h3>No ads</h3><p>Nothing to interrupt the experience. Just you and the product.</p></div>
+        <div class="valor"><svg aria-hidden="true"><use href="#i-vuelta"/></svg><h3>Try, and try again</h3><p>Every idea goes through many rounds before it ships: sketches, tests and discarded paths until it truly works.</p></div>
         <div class="valor"><svg aria-hidden="true"><use href="#i-mano"/></svg><h3>Made with care</h3><p>We are a small studio and we want to make the most of it: taking time over the details that matter and building products we can be proud of.</p></div>
       </div>
     </section>
@@ -132,9 +145,10 @@
   <symbol id="i-correo" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></symbol>
   <symbol id="i-insta" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor"/></symbol>
   <symbol id="i-pieza" viewBox="0 0 24 24"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M8.5 6h7M16.2 7.8 7.8 16.2M8.5 18h7"/></symbol>
-  <symbol id="i-ban" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M6 6l12 12"/></symbol>
+  <symbol id="i-vuelta" viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.3-5.6"/><path d="M20 4v4.5h-4.5"/><circle cx="12" cy="12" r="2"/></symbol>
   <symbol id="i-mano" viewBox="0 0 24 24"><path d="M12 20.5s-8-4.9-8-11a4.5 4.5 0 0 1 8-2.8 4.5 4.5 0 0 1 8 2.8c0 6.1-8 11-8 11z"/></symbol>
 </svg>
 <script src="../tema.js"></script>
+<script src="../trazado.js"></script>
 </body>
 </html>
