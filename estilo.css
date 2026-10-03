@@ -42,6 +42,7 @@ img{ max-width:100%; display:block; }
 
 /* Cabecera */
 header.top{ display:flex; align-items:center; justify-content:space-between; gap:12px; padding:18px 0; }
+.marca{ display:flex; align-items:center; gap:10px; text-decoration:none; font-weight:700; font-size:20px; letter-spacing:-.01em; }
 .marca img{ height:30px; width:auto; }
 .acciones-top{ display:flex; align-items:center; gap:10px; }
 .btn-tema, .btn-idioma{ background:var(--panel); border:1px solid var(--line); transition:border-color .2s, transform .2s; }
@@ -80,8 +81,9 @@ header.top{ display:flex; align-items:center; justify-content:space-between; gap
   background:color-mix(in srgb, var(--cian) 12%, transparent); border:1px solid color-mix(in srgb, var(--cian) 30%, transparent);
   padding:7px 14px; border-radius:999px;
 }
-h1{ font-size:clamp(36px,6vw,64px); line-height:1.05; letter-spacing:-.02em; margin:18px 0 0; font-weight:700; }
-h1 em{ font-style:normal; color:var(--cian); }
+h1{ font-size:clamp(34px,5.2vw,58px); text-wrap:balance; line-height:1.05; letter-spacing:-.02em; margin:18px 0 0; font-weight:700; }
+h1 em{ display:block; font-style:normal; color:var(--cian); }
+@media (min-width:600px){ h1 .linea{ white-space:nowrap; } }
 .sub{ font-size:clamp(17px,2.2vw,19px); color:var(--ink-dim); max-width:520px; margin:20px 0 0; }
 /* El trazado de Numik: retícula, caminos descartados y una línea que va de la idea a lo real */
 .escena{ position:relative; margin:0; }
@@ -133,8 +135,13 @@ h3{ margin:0; }
   text-align:center; background:linear-gradient(135deg,var(--panel),var(--panel-alt)); border:1px solid var(--line);
   border-radius:36px; padding:40px 24px;
 }
-.contacto > p{ color:var(--ink-dim); max-width:520px; margin:12px auto 0; font-size:17px; }
-.contacto .botones{ justify-content:center; }
+.contacto{ display:grid; grid-template-columns:auto 1fr; gap:24px 48px; align-items:center; text-align:left; padding:40px 48px; }
+.contacto-logo img{ width:170px; height:auto; }
+.contacto h2{ text-align:left; }
+.contacto-cuerpo > p{ color:var(--ink-dim); max-width:520px; margin:12px 0 0; font-size:17px; }
+.contacto .botones{ justify-content:flex-start; }
+.btn-insta svg{ stroke:url(#igGrad); }
+.btn-insta span{ background:linear-gradient(90deg,#f58529,#dd2a7b 45%,#8134af 75%,#515bd4); -webkit-background-clip:text; background-clip:text; color:transparent; }
 .contacto .apoyo{ margin-top:24px; font-size:15px; }
 .apoyo a{ color:var(--cian); font-weight:700; }
 
@@ -152,6 +159,9 @@ footer a:hover{ color:var(--ink); text-decoration:underline; }
   .juego{ grid-template-columns:1fr; justify-items:center; text-align:center; padding:28px 20px; }
   .juego .botones, .pildoras{ justify-content:center; }
   .rejilla{ grid-template-columns:1fr; }
+  .contacto{ grid-template-columns:1fr; justify-items:center; text-align:center; padding:36px 22px; }
+  .contacto h2{ text-align:center; } .contacto-cuerpo > p{ margin-left:auto; margin-right:auto; } .contacto .botones{ justify-content:center; }
+  .contacto-logo img{ width:130px; }
 }
 @media (max-width:480px){
   .marca img{ height:24px; }
