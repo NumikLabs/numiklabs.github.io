@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Política de privacidad — Trazen: Conecta los números</title>
+<link rel="alternate" hreflang="es" href="https://numiklabs.github.io/trazen/privacidad.html">
+<link rel="alternate" hreflang="en" href="https://numiklabs.github.io/trazen/en/privacy.html">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="img/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<meta name="theme-color" content="#0f121e">
+<script>
+  // Mismo tema que la landing: el del sistema, o el elegido con el botón (se guarda). Va antes del CSS: sin destellos.
+  (function () {
+    var t = null;
+    try { t = localStorage.getItem('trazen-web-tema'); } catch (e) {}
+    if (t !== 'light' && t !== 'dark') t = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', t === 'light' ? '#dde5f0' : '#0f121e');
+  })();
+</script>
+<style>
+  /* Mismo sistema visual que la landing (index.html) y la app: tokens, fuente y logo */
+  @font-face{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:300 800;font-display:swap;src:url('fonts/plus-jakarta-sans.woff2') format('woff2');}
+  :root{
+    color-scheme:dark;
+    --bg:#0f121e; --panel:#1a1d2d; --line:#2a2f47; --ink:#ffffff; --ink-dim:#94a3b8;
+    --blue:#60a5fa; --orange:#ff8f45; --halo:rgba(59,130,246,.22);
+  }
+  :root[data-theme="light"]{
+    color-scheme:light;
+    --bg:#dde5f0; --panel:#ffffff; --line:#d0d9e8; --ink:#0f172a; --ink-dim:#4b5a70; --blue:#2563eb; --orange:#f0761a; --halo:rgba(96,165,250,.28);
+  }
+  *{ box-sizing:border-box; }
+  body{
+    font-family:'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+    max-width:720px; margin:0 auto; padding:0 20px 80px;
+    background:var(--bg); color:var(--ink); line-height:1.65; -webkit-font-smoothing:antialiased;
+  }
+  body::before{
+    content:""; position:fixed; inset:0; z-index:-1; pointer-events:none;
+    background:radial-gradient(800px 460px at 80% -10%, var(--halo), transparent 70%);
+  }
+  header{ display:flex; align-items:center; justify-content:space-between; padding:18px 0 8px; }
+  .marca{ display:flex; align-items:center; gap:10px; font-weight:700; font-size:20px; letter-spacing:-.02em; text-decoration:none; color:inherit; }
+  .marca svg{ width:32px; height:32px; }
+  [data-theme="light"] .marca svg{ width:36px; height:36px; padding:4px; border-radius:10px; background:#141724; }
+  .acciones{ display:flex; align-items:center; gap:10px; }
+  /* Botón de tema, igual que en la landing: sol en oscuro (→ claro), luna en claro (→ oscuro) */
+  .btn-tema{
+    width:42px; height:42px; border-radius:50%; display:grid; place-items:center; padding:0; cursor:pointer;
+    background:var(--panel); border:1px solid var(--line); color:var(--orange);
+  }
+  .btn-tema:hover{ border-color:var(--blue); }
+  .btn-tema:focus-visible{ outline:3px solid var(--blue); outline-offset:3px; }
+  .btn-tema svg{ width:20px; height:20px; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+  .btn-tema .luna, [data-theme="light"] .btn-tema .sol{ display:none; }
+  [data-theme="light"] .btn-tema .luna{ display:block; }
+  [data-theme="light"] .btn-tema{ color:var(--blue); }
+  /* Idioma, igual que en la landing: globo + el idioma al que lleva */
+  .btn-idioma{
+    height:42px; padding:0 14px 0 12px; border-radius:999px; display:inline-flex; align-items:center; gap:7px;
+    background:var(--panel); border:1px solid var(--line); color:var(--ink); font-weight:700; font-size:14px;
+    letter-spacing:.04em; text-decoration:none;
+  }
+  .btn-idioma:hover{ border-color:var(--blue); }
+  .btn-idioma:focus-visible{ outline:3px solid var(--blue); outline-offset:3px; }
+  .btn-idioma svg{ width:18px; height:18px; fill:none; stroke:var(--blue); stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+  .volver{
+    display:inline-flex; align-items:center; gap:6px; font-weight:700; font-size:14px; text-decoration:none; color:var(--ink);
+    padding:9px 16px; border-radius:999px; background:var(--panel); border:1px solid var(--line);
+  }
+  .volver:hover{ border-color:var(--blue); }
+  .volver svg{ width:16px; height:16px; fill:none; stroke:currentColor; stroke-width:2.2; stroke-linecap:round; stroke-linejoin:round; }
+  /* En móviles estrechos, «Volver» se queda en solo la flecha para que quepan los tres botones */
+  @media (max-width:420px){ .volver span{ display:none; } .volver{ padding:0; width:42px; height:42px; justify-content:center; } }
+  main{ background:var(--panel); border:1px solid var(--line); border-radius:28px; padding:30px 30px 34px; margin-top:16px; }
+  h1{ font-size:clamp(24px,4.4vw,30px); line-height:1.15; letter-spacing:-.015em; margin:0 0 6px; }
+  .updated{ color:var(--ink-dim); font-size:14px; margin:0 0 30px; }
+  h2{ font-size:18px; margin:34px 0 0; color:var(--blue); letter-spacing:-.01em; }
+  p, li{ color:var(--ink); }
+  a{ color:var(--blue); font-weight:600; }
+  a:focus-visible{ outline:3px solid var(--blue); outline-offset:3px; border-radius:6px; }
+  ul{ padding-left:20px; }
+  li{ margin-bottom:8px; }
+  li::marker{ color:var(--blue); }
+  .contact{ background:var(--bg); border:1px solid var(--line); border-radius:20px; padding:16px 20px; margin-top:12px; }
+  .contact p{ margin:6px 0; }
+  footer{ margin-top:26px; text-align:center; color:var(--ink-dim); font-size:13.5px; }
+  @media (max-width:560px){ main{ padding:22px 18px 26px; border-radius:24px; } }
+</style>
+</head>
+<body>
+<header>
+  <a class="marca" href="index.html" aria-label="Trazen, página principal">
+    <svg viewBox="0 0 1024 1024" aria-hidden="true">
+      <path d="M 252 252 L 772 252 L 252 772 L 772 772" stroke="#6aa7ff" stroke-width="30" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <circle cx="252" cy="252" r="122" fill="#16264f" stroke="#6aa7ff" stroke-width="18"/>
+      <circle cx="772" cy="252" r="122" fill="#3a2410" stroke="#ff8f45" stroke-width="18"/>
+      <circle cx="252" cy="772" r="122" fill="#3a2410" stroke="#ff8f45" stroke-width="18"/>
+      <circle cx="772" cy="772" r="122" fill="#16264f" stroke="#6aa7ff" stroke-width="18"/>
+    </svg>TRAZEN
+  </a>
+  <div class="acciones">
+    <a class="btn-idioma" href="en/privacy.html" hreflang="en" lang="en" aria-label="Read in English">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg>EN
+    </a>
+    <button class="btn-tema" id="btnTema" type="button" aria-label="Cambiar a tema claro">
+      <svg class="sol" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1"/></svg>
+      <svg class="luna" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
+    </button>
+    <a class="volver" href="index.html" aria-label="Volver a la página principal"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg><span>Volver</span></a>
+  </div>
+</header>
+<main>
+
+<h1>Política de privacidad de Trazen</h1>
+<p class="updated">Última actualización: 3 de octubre de 2026</p>
+
+<p>
+  Trazen es un juego de puzles de lógica para Android. Esta página explica,
+  de forma clara y sin rodeos, qué información maneja la aplicación y cómo
+  lo hace.
+</p>
+
+<h2>Resumen breve</h2>
+<p>
+  Trazen no requiere registro ni cuenta de usuario, no muestra anuncios y
+  funciona sin conexión. Tu progreso se guarda en tu propio dispositivo y,
+  si la tienes activada, en la copia de seguridad de tu móvil.
+  En la versión actual la aplicación no envía información de uso a
+  ningún servicio; si en el futuro añadimos analítica de uso, será
+  opcional y te lo explicaremos antes (ver «Analítica de uso»).
+</p>
+
+<h2>Qué se guarda en tu dispositivo</h2>
+<p>
+  La aplicación guarda localmente en tu dispositivo (en el almacenamiento
+  propio de la aplicación):
+</p>
+<ul>
+  <li>Tu progreso en los niveles (cuáles has completado)</li>
+  <li>Tus mejores tiempos y récords</li>
+  <li>Tu racha de días jugados en el reto diario</li>
+  <li>Las insignias que hayas conseguido</li>
+  <li>Tus preferencias (tema claro/oscuro, sonido, recordatorio diario activado o no e idioma)</li>
+</ul>
+<p>
+  Trazen no tiene cuentas propias ni servidores donde guardar estos datos.
+</p>
+
+<h2>Copia de seguridad del móvil</h2>
+<p>
+  Si tienes activada la copia de seguridad de Android (Ajustes del móvil →
+  Google → Copia de seguridad), el propio sistema incluye en ella estos datos
+  del juego, en tu cuenta de Google, para que puedas recuperarlos si cambias
+  de teléfono o reinstalas la aplicación. Esa copia la hace y la guarda
+  Android según la
+  <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">política de privacidad de Google</a>;
+  la aplicación no se conecta a internet para hacerla. Si no usas la copia
+  de seguridad, los datos se eliminan al desinstalar la aplicación.
+</p>
+
+<h2>Analítica de uso</h2>
+<p>
+  La versión actual de Trazen no incluye herramientas de analítica. Puede
+  que en una versión futura añadamos analítica de uso (por ejemplo, Google
+  Analytics para Firebase) para saber qué partes del juego se usan más y
+  mejorarlo. Si lo hacemos:
+</p>
+<ul>
+  <li>Será <b>opcional</b>: la aplicación te pedirá permiso y podrás jugar igual si dices que no</li>
+  <li>Podrás cambiar de opinión cuando quieras desde Más → Ajustes</li>
+  <li>Se usarían datos de uso del juego (por ejemplo, niveles jugados o pantallas abiertas), nunca tu nombre, correo ni contactos</li>
+  <li>Actualizaremos esta página antes de que llegue esa versión, indicando qué se recoge, con qué servicio y durante cuánto tiempo</li>
+</ul>
+
+<h2>Lo que la aplicación no hace</h2>
+<ul>
+  <li>No pide registro ni cuenta, ni te pide datos como tu nombre, correo o teléfono</li>
+  <li>No muestra anuncios de ningún tipo</li>
+  <li>No vende tu información a nadie</li>
+  <li>No accede a tu cámara, ubicación, contactos ni a ningún otro permiso sensible del dispositivo</li>
+</ul>
+
+<h2>Tipografía</h2>
+<p>
+  La aplicación usa la tipografía Plus Jakarta Sans incluida dentro de la propia
+  aplicación. No se carga desde servidores externos.
+</p>
+
+<h2>Permisos del dispositivo</h2>
+<p>
+  Trazen no solicita ningún permiso sensible (ni cámara, ni ubicación,
+  ni contactos, ni archivos) y el juego funciona sin conexión.
+</p>
+<p>
+  El único permiso que puede pedir es el de <b>notificaciones</b>, para el
+  recordatorio diario del reto (a las 20:00, solo si ese día aún no lo has
+  hecho). Es una notificación local: la programa el propio móvil.
+  Puedes desactivarla en Más → Ajustes o en los ajustes de Android.
+</p>
+
+<h2>Aportaciones voluntarias</h2>
+<p>
+  Desde Más → «Apoya a Trazen» puedes, si quieres, hacer una pequeña aportación
+  para ayudarnos a seguir desarrollando el juego. Al elegir un importe se abre
+  la página de <b>Ko-fi</b> de Numik Labs en tu navegador, fuera de la
+  aplicación: el pago y los datos que Ko-fi te pida los gestiona Ko-fi según su
+  propia política, no esta. Trazen no recibe ni guarda tus datos de pago, y la
+  aportación no desbloquea nada ni cambia el juego.
+</p>
+
+<h2>Enlaces externos</h2>
+<p>
+  La aplicación puede abrir enlaces fuera de ella: el botón de valoración
+  abre la ficha de Trazen en Google Play, el enlace de privacidad abre
+  esta misma página, el de Instagram abre nuestro perfil y «Apoya a Trazen»
+  abre nuestra página de Ko-fi. Al salir de la aplicación se aplican las políticas
+  de esos servicios (por ejemplo, la
+  <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">política de privacidad de Google</a>),
+  no esta.
+</p>
+
+<h2>Menores de edad</h2>
+<p>
+  Trazen no pide datos personales a nadie, independientemente de su edad, y
+  no requiere registro. Si en el futuro se añade analítica opcional, no se
+  usará para crear perfiles de usuarios ni para mostrar publicidad.
+</p>
+
+<h2>Cambios en esta política</h2>
+<p>
+  Si esta política cambia (por ejemplo, al añadir analítica de uso), se
+  actualizará esta misma página con la fecha de la revisión antes de
+  publicar la versión de la aplicación que incluya el cambio.
+</p>
+
+<h2>Esta página</h2>
+<p>
+  Esta página informativa no usa cookies ni herramientas de analítica.
+</p>
+
+<h2>Contacto</h2>
+<div class="contact">
+  <p>Si tienes cualquier pregunta sobre esta política, puedes escribir a:</p>
+  <p><strong><a href="mailto:numiklabs@gmail.com">numiklabs@gmail.com</a></strong></p>
+</div>
+</main>
+<footer>© 2026 Numik Labs · Trazen</footer>
+
+<script>
+  // Botón de tema: cambia y guarda la elección (la landing la lee al volver)
+  (function () {
+    var b = document.getElementById('btnTema'), raiz = document.documentElement;
+    function pintar() {
+      var claro = raiz.getAttribute('data-theme') === 'light';
+      b.setAttribute('aria-label', claro ? 'Cambiar a tema oscuro' : 'Cambiar a tema claro');
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', claro ? '#dde5f0' : '#0f121e');
+    }
+    b.addEventListener('click', function () {
+      var t = raiz.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+      raiz.setAttribute('data-theme', t);
+      try { localStorage.setItem('trazen-web-tema', t); } catch (e) {}
+      pintar();
+    });
+    // Sin elección guardada, sigue al sistema también si cambia con la página abierta
+    matchMedia('(prefers-color-scheme: light)').addEventListener('change', function (e) {
+      var guardado = null;
+      try { guardado = localStorage.getItem('trazen-web-tema'); } catch (err) {}
+      if (!guardado) { raiz.setAttribute('data-theme', e.matches ? 'light' : 'dark'); pintar(); }
+    });
+    pintar();
+  })();
+</script>
+
+</body>
+</html>

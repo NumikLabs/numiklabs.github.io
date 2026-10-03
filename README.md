@@ -9,5 +9,7 @@ Web estática del estudio, publicada con GitHub Pages en `https://numiklabs.gith
 - Colores de la marca: marino `#0a243c` y cian `#00d4f3`. Logos copiados de `trazen-app/brand/numik-labs/logo/`.
 - Promesas permitidas: Gratis · Sin anuncios · Sin conexión · Sin registro. Nada sobre datos.
 - Ko-fi sin contraprestación y en plural («nos ayuda»).
-- Rutas reservadas para más adelante: `/trazen/`, `/prensa/`, `/privacidad/`. La privacidad de Trazen sigue en
-  `fernandomguez.github.io/Trazen-juego/privacidad.html` (es la URL de Play: no romperla).
+- `/trazen/` es la web de Trazen (y su privacidad, `trazen/privacidad.html` y `trazen/en/privacy.html`, la URL de Play).
+  **No se edita aquí**: es una copia de `web/` del repo de Trazen, que se copia con `node tools/publicar-web.mjs`.
+  La dirección antigua (`fernandomguez.github.io/Trazen-juego/`) redirige aquí y debe seguir haciéndolo.
+- Autor de los commits de este repo: «Numik Labs <numiklabs@gmail.com>» (configurado en `.git/config`).
