@@ -249,9 +249,12 @@
   [data-theme="light"] .numik .numik-claro{ display:block; }
   .numik h2{ text-align:left; font-size:clamp(24px,3.4vw,34px); }
   .numik p{ margin:12px 0 0; color:var(--ink-dim); font-size:17px; max-width:520px; }
-  .enlaces-numik{ display:flex; flex-wrap:wrap; gap:8px 24px; margin-top:16px; }
-  .enlaces-numik a{ color:var(--blue); font-weight:700; text-decoration:none; }
-  .enlaces-numik a:hover{ text-decoration:underline; }
+  .enlaces-numik{ margin-top:22px; }
+  .btn-sec{ background:var(--panel); color:var(--ink); border:1px solid var(--line); padding:14px 24px; font-size:16px; }
+  .btn-sec:hover{ border-color:var(--blue); }
+  .btn-sec svg{ width:20px; height:20px; fill:none; stroke:var(--blue); stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+  .btn-sec .flecha{ width:18px; height:18px; transition:transform .2s; }
+  .btn-sec:hover .flecha{ transform:translateX(3px); }
 
   /* Cierre */
   .cierre{ text-align:center; padding-bottom:20px; }
@@ -428,10 +431,9 @@
       <div>
         <h2>Made with love by Numik Labs</h2>
         <p>Trazen is a Numik Labs project, made with the excitement of people who love a good puzzle. No ads and no connection needed: just you and the board.</p>
-        <div class="enlaces-numik">
-          <a href="../../en/">Meet Numik Labs →</a>
-          <a href="https://www.instagram.com/trazenapp/" target="_blank" rel="noopener">Follow the story at @trazenapp →</a>
-          <a href="mailto:numiklabs@gmail.com">Write to us: numiklabs@gmail.com</a>
+        <div class="botones enlaces-numik">
+          <a class="btn btn-sec" href="../../en/">Meet Numik Labs<svg class="flecha" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="btn btn-sec" href="mailto:numiklabs@gmail.com"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg>Write to us</a>
         </div>
       </div>
     </div>
