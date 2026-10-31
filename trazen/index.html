@@ -494,6 +494,19 @@
 'use strict';
 const reducir = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+// ===== Origen de la visita: ?utm_source=instagram pasa a los botones de Google Play (sin etiqueta: «web») =====
+(() => {
+  const origen = new URLSearchParams(location.search).get('utm_source');
+  if (!origen || !/^[a-z0-9_-]{1,30}$/i.test(origen)) return;
+  document.querySelectorAll('a.btn-play').forEach(a => {
+    a.href = a.href.replace('utm_source%3Dweb', 'utm_source%3D' + encodeURIComponent(origen.toLowerCase()));
+  });
+  // al cambiar de idioma, la etiqueta viaja con la visita
+  document.querySelectorAll('a.btn-idioma').forEach(a => {
+    a.href = a.href.split('?')[0] + '?utm_source=' + encodeURIComponent(origen.toLowerCase());
+  });
+})();
+
 // ===== Tablero del hero: nivel 17 (5×5), resuelto paso a paso =====
 const SOLUCION = [[23,25,18,16,15],[22,24,19,17,14],[8,21,20,13,12],[7,9,10,11,2],[6,5,4,3,1]];
 const PISTAS   = [[23,25,0,0,15],[22,0,0,17,0],[0,0,0,13,0],[0,9,10,0,0],[0,0,0,0,1]];
